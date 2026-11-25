@@ -1,44 +1,24 @@
 import { MenuItem, Rule, Review } from '@/types';
 
+// Prices and descriptions from MAPLE LEAF FINAL MENU PRICES.pdf.
 export const MENU_ITEMS: MenuItem[] = [
-  {
-    id: '1',
-    name: '#1 — The Marauder Stack',
-    description: "Two fluffy pancakes, 2 strips of bacon, 2 sausages, and 1 egg. A no-nonsense breakfast raid on hunger.",
-    price: '$13.95',
-    badge: 'STUDENT FUEL',
-    image: '/assets/marauder-stack.jpg'
-  },
-  {
-    id: '2',
-    name: '#2 — French Toast Frenzy',
-    description: "Three slices of golden French toast, 2 back bacon, 2 sausages, and 1 egg. Syrup, carbs, and chaos in the best way.",
-    price: '$16.95',
-    badge: 'FAN FAVE',
-    image: '/assets/french-toast-frenzy.jpg'
-  },
-  {
-    id: '3',
-    name: '#3 — The Lumberjack',
-    description: "2 back bacon, 2 sausages, 2 eggs, homefries, and toast. Built for people who treat breakfast like a full-time job.",
-    price: '$14.95',
-    image: '/assets/lumberjack.jpg'
-  },
-  {
-    id: '4',
-    name: '#4 — Exam Week Special',
-    description: "2 eggs, 2 bacon, 2 sausages, homefries, and toast. A crash-course survival kit with caffeine optional and carbs mandatory.",
-    price: '$13.95',
-    badge: 'LIMITED TIME',
-    image: '/assets/exam-week-special.jpg'
-  }
+  { id: '1', name: 'The Marauder Stack', description: '2 Pancakes, 2 Strips of Bacon, 2 Sausages, and 1 Egg.', price: '$14.95', image: '/assets/marauder-stack.webp' },
+  { id: '2', name: 'French Toast Frenzy', description: '3 Slices of French Toast, 2 Slices of Back Bacon, 2 Sausages, and 1 Egg.', price: '$17.95', image: '/assets/french-toast-frenzy.webp' },
+  { id: '3', name: 'The Lumberjack', description: '2 Slices of Back Bacon, 2 Sausages, 2 Eggs, Home Fries, and Toast.', price: '$15.95', image: '/assets/lumberjack.webp' },
+  { id: '4', name: 'Exam Week Special', description: '2 Strips of Bacon, 2 Sausages, 2 Eggs, Home Fries, and Toast.', price: '$13.95', image: '/assets/exam-week-special.webp' },
 ];
+
+export const WAFFLE_SPECIAL = {
+  name: 'Waffle Special',
+  description: '1 Waffle, 2 Strips of Bacon, 2 Sausages, and 1 Egg.',
+  price: '$17.95',
+};
 
 export const RULES: Rule[] = [
   { id: 1, title: 'NO ONE LEAVES HUNGRY', text: "Portions are sized for offensive linemen and hungry engineering students." },
   { id: 2, title: 'COFFEE IS BOTTOMLESS', text: "The pot never stops until your hands stop shaking." },
   { id: 3, title: 'CHAOS IS WELCOME', text: "Bacon sizzling? Students debating physics? It's all part of the Saturday soundtrack." },
-  { id: 4, title: 'SINCE 1999', text: "We've been flipping flapjacks in Westdale longer than you've been alive." },
+  { id: 4, title: 'SINCE 1995', text: 'Founded by Gus Vergos. Serving Mac and our Hamilton neighbours with good, warm food and a kind welcome.' },
 ];
 
 export const REVIEWS: Review[] = [

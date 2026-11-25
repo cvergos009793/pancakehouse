@@ -2,6 +2,7 @@ import { hydrateRoot, createRoot } from 'react-dom/client';
 import { StrictMode } from 'react';
 import App from './App';
 import './index.css';
+import './bold.css';
 
 const rootElement = document.getElementById('root')!;
 const hasSSRContent = rootElement.innerHTML.trim() && !rootElement.innerHTML.includes('<!--app-html-->');
