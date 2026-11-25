@@ -33,7 +33,7 @@ export default function FullMenu() {
  };
  return <main className="full-menu-page">
   <nav className="printed-menu-nav" aria-label="Menu navigation">
-    <a href="#morning">Home</a>
+    <a className="printed-menu-home" href="#morning">Home</a>
     <div aria-label="Menu sections" role="group">
       <button aria-pressed={side === 'front'} onClick={() => changeSide('front')}>{menuLabels.front}</button>
       <button aria-pressed={side === 'back'} onClick={() => changeSide('back')}>{menuLabels.back}</button>

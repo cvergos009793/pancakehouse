@@ -12,32 +12,30 @@ const foodFocus: Record<string, string> = {
   burger: '60% 76%',
   'classic-breakfast': '37% 52%',
   'club-sandwich': '52% 74%',
-  coffee: '55% 62%',
   'fruit-waffle': '50% 55%',
   'steak-and-eggs': '98% 54%',
   'breakfast-wrap': '62% 67%',
-  'fried-eggs': '48% 65%',
   'french-toast': '49% 70%',
   'syrup-pour': '52% 76%',
   'waffle-spread': '31% 73%',
 };
 
-type Shot = { photo: string; detail: string; label: string; detailLabel: string; shape?: string };
+type Shot = { photo: string; label: string; shape?: string };
 const edits: Record<Variant, Shot[]> = {
   sweet: [
-    { photo: 'fruit-waffle', detail: 'drink-coffee', label: 'Fruit-Topped Waffles', detailLabel: 'Bottomless coffee', shape: 'portrait' },
-    { photo: 'french-toast', detail: 'drink-orange-juice', label: 'Golden French Toast', detailLabel: 'Orange juice', shape: 'plate' },
-    { photo: 'syrup-pour', detail: 'drink-coffee', label: 'Pass the Syrup', detailLabel: 'Bottomless coffee', shape: 'portrait' },
-    { photo: 'waffle-spread', detail: 'drink-orange-juice', label: 'Around the Breakfast Table', detailLabel: 'Orange juice', shape: 'portrait' },
-    { photo: 'blueberry-pancakes', detail: 'drink-coffee', label: 'Blueberry Pancakes', detailLabel: 'Bottomless coffee', shape: 'portrait' },
+    { photo: 'fruit-waffle', label: 'Fruit-Topped Waffles', shape: 'portrait' },
+    { photo: 'french-toast', label: 'Golden French Toast', shape: 'plate' },
+    { photo: 'syrup-pour', label: 'Pass the Syrup', shape: 'portrait' },
+    { photo: 'waffle-spread', label: 'Around the Breakfast Table', shape: 'portrait' },
+    { photo: 'blueberry-pancakes', label: 'Blueberry Pancakes', shape: 'portrait' },
   ],
   savoury: [
-    { photo: 'steak-and-eggs', detail: 'drink-coffee', label: 'Steak and Eggs', detailLabel: 'Bottomless coffee', shape: 'plate' },
-    { photo: 'classic-breakfast', detail: 'drink-orange-juice', label: 'Farm Eggs Your Way', detailLabel: 'Orange juice', shape: 'plate' },
-    { photo: 'burger', detail: 'drink-iced', label: 'Burgers for Lunch', detailLabel: 'Cold drink with ice', shape: 'portrait' },
-    { photo: 'club-sandwich', detail: 'drink-iced', label: 'Ham and Egg Sandwich', detailLabel: 'Cold drink with ice', shape: 'portrait' },
-    { photo: 'breakfast-wrap', detail: 'drink-orange-juice', label: 'Breakfast Wrap and Home Fries', detailLabel: 'Orange juice', shape: 'portrait' },
-    { photo: 'breakfast-spread', detail: 'drink-coffee', label: 'Breakfast at Maple Leaf', detailLabel: 'Bottomless coffee', shape: 'round' },
+    { photo: 'steak-and-eggs', label: 'Steak and Eggs', shape: 'plate' },
+    { photo: 'classic-breakfast', label: 'Farm Eggs Your Way', shape: 'plate' },
+    { photo: 'burger', label: 'Burgers for Lunch', shape: 'portrait' },
+    { photo: 'club-sandwich', label: 'Ham and Egg Sandwich', shape: 'portrait' },
+    { photo: 'breakfast-wrap', label: 'Breakfast Wrap and Home Fries', shape: 'portrait' },
+    { photo: 'breakfast-spread', label: 'Breakfast at Maple Leaf', shape: 'round' },
   ],
 };
 
@@ -58,14 +56,12 @@ export default function FoodMontage({ variant, fullBleed = false }: { variant: V
     frames.forEach((frame, index) => {
       const start = index * 4.3;
       const main = frame.querySelector('.montage-main');
-      const detail = frame.querySelector('.montage-detail');
       const label = frame.querySelector('.montage-label');
       const enterFrom = index % 2 === 0 ? -1 : 1;
       edit.addLabel(`shot-${index + 1}`, start)
         .call(() => { root.dataset.shot = String(index + 1); }, [], start)
         .fromTo(frame, { autoAlpha: index === 0 ? 1 : 0 }, { autoAlpha: 1, duration: .9, ease: 'sine.inOut', immediateRender: false }, start)
         .fromTo(main, { xPercent: fullBleed ? 0 : 12 * enterFrom, yPercent: fullBleed ? 0 : 12, scale: fullBleed ? 1 : .85, rotation: fullBleed ? 0 : -8 * enterFrom }, { xPercent: 0, yPercent: 0, scale: 1, rotation: 0, duration: .85, immediateRender: false }, start)
-        .fromTo(detail, { xPercent: -12 * enterFrom, yPercent: -15, scale: .72, rotation: 12 * enterFrom }, { xPercent: 0, yPercent: 0, scale: 1, rotation: 0, duration: .8, ease: 'back.out(1.1)', immediateRender: false }, start + .15)
         .fromTo(label, { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, immediateRender: false }, start + .35);
       if (index > 1) edit.set(frames[index - 1], { autoAlpha: 0 }, start + .9);
       if (index === frames.length - 1) {
@@ -95,12 +91,11 @@ export default function FoodMontage({ variant, fullBleed = false }: { variant: V
     };
   }, { scope: stage, dependencies: [variant, fullBleed], revertOnUpdate: true });
 
-  return <figure className={`montage-stage montage-${variant}${fullBleed ? ' montage-full' : ''}`} ref={stage} aria-label={variant === 'sweet' ? 'Food photo edit featuring our fruit-topped waffles, French toast, blueberry pancakes, syrup, and coffee' : 'Food photo edit featuring our steak and eggs, breakfast wraps, burgers, ham and egg sandwich, and coffee'}>
+  return <figure className={`montage-stage montage-${variant}${fullBleed ? ' montage-full' : ''}`} ref={stage} aria-label={variant === 'sweet' ? 'Food photo edit featuring our fruit-topped waffles, French toast, and blueberry pancakes' : 'Food photo edit featuring our steak and eggs, breakfast wraps, burgers, and a ham and egg sandwich'}>
     <div className="montage-backdrop" aria-hidden="true" />
     <div className="montage-frames" aria-hidden="true">
       {shots.map((shot, index) => <div key={shot.photo} className={`montage-frame montage-frame-${index + 1}`}>
         <div className={`montage-main montage-shape-${shot.shape}`}><img style={{ objectPosition: foodFocus[shot.photo] }} src={`/food/${shot.photo}.webp`} alt="" width="1100" height="1100" decoding="async" /></div>
-        <div className="montage-detail"><img src={`/food/${shot.detail}.webp`} alt="" width="288" height="288" decoding="async" /><span>{shot.detailLabel}</span></div>
         <div className="montage-label">{shot.label}</div>
       </div>)}
     </div>

@@ -31,10 +31,11 @@ function Logo({ footer = false, striped = false }: { footer?: boolean; striped?:
 function HomePage() {
   const orderDialog = useRef<HTMLDialogElement>(null);
   const [active, setActive] = useState('morning');
-  const [filter, setFilter] = useState('All Favourites');
 
   useEffect(() => {
-    if (['#instagram', '#catering'].includes(window.location.hash)) {
+    if (window.location.hash === '#morning') {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    } else if (['#instagram', '#catering'].includes(window.location.hash)) {
       document.getElementById(window.location.hash.slice(1))?.scrollIntoView({ behavior: 'instant' });
     }
     const observer = new IntersectionObserver(entries => {
@@ -50,8 +51,6 @@ function HomePage() {
     return () => observer.disconnect();
   }, []);
 
-  const items = menuItems.filter(item => filter === 'All Favourites' || (filter === 'Something Sweet' ? ['1', '2'] : ['3', '4']).includes(item.id));
-
   return <>
     <a href="#content" className="skip-link">Skip to content</a>
     <header className="site-header">
@@ -59,9 +58,8 @@ function HomePage() {
     </header>
     <nav className="navigation" aria-label="Main navigation">
       <div className="nav-tabs">
-        <a className="nav-tab" href="#location"><span>1520 Main St W</span><small>Hamilton</small></a>
-        <a className="nav-tab" href="#hours"><span>8 AM – 2 PM</span><small>Every Day</small></a>
-        <button className="nav-tab nav-order" onClick={() => orderDialog.current?.showModal()}><span>Order Now</span></button>
+        <a className="nav-tab" href="#location"><span>1520 Main St W</span></a>
+        <a className="nav-tab" href="#hours"><span>8 AM – 2 PM</span></a>
         <a className="nav-tab nav-menu" href="#full-menu"><span>Menu</span></a>
         <a className="nav-instagram" href="#instagram" aria-label="See our Instagram feed">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
@@ -71,6 +69,7 @@ function HomePage() {
           </svg>
           <span>Instagram</span>
         </a>
+        <button className="nav-tab nav-order" onClick={() => orderDialog.current?.showModal()}><span>Order Now</span></button>
       </div>
     </nav>
     <main id="content">
@@ -95,8 +94,7 @@ function HomePage() {
 
       <section id="menu" className="menu-section">
         <div className="section-heading reveal"><div><p className="eyebrow">FOUR HOUSE SPECIALS</p><h2>HOUSE<br/><em>FAVOURITES.</em></h2></div><p>Large farm eggs, fresh bacon and sausage.<br/>Pick your favourite plate below.</p></div>
-        <div className="menu-filters" role="group" aria-label="Filter breakfast favourites">{['All Favourites', 'Something Sweet', 'Something Hearty'].map(option => <button key={option} onClick={() => setFilter(option)} aria-pressed={filter === option}>{option}</button>)}</div>
-        <div className="menu-grid">{items.map(item => <a key={item.id} href="#full-menu" className="menu-item"><div className="menu-photo"><img src={item.image} alt={item.name} loading="lazy" /><span className="menu-number">#{item.id}</span><span className="menu-arrow" aria-hidden="true">↗</span></div><div className="menu-item-title"><h3>{item.name}</h3><span>{item.price}</span></div><p>{item.description}</p></a>)}</div>
+        <div className="menu-grid">{menuItems.map(item => <a key={item.id} href="#full-menu" className="menu-item"><div className="menu-photo"><img src={item.image} alt={item.name} loading="lazy" /><span className="menu-number">#{item.id}</span><span className="menu-arrow" aria-hidden="true">↗</span></div><div className="menu-item-title"><h3>{item.name}</h3><span>{item.price}</span></div><p>{item.description}</p></a>)}</div>
         <section id="waffle-special" className="waffle-special" aria-labelledby="waffle-title">
           <div className="waffle-art"><img src="/brand/rooster.png" alt="" loading="lazy" width="1089" height="1445" /></div>
           <div className="waffle-copy"><span className="eyebrow">OUR AWARD-WINNING BELGIAN WAFFLE</span><div className="waffle-heading"><h3 id="waffle-title">Waffle <em>Special!</em></h3><strong className="waffle-price">{WAFFLE_SPECIAL.price}</strong></div><p>{WAFFLE_SPECIAL.description}</p><a className="button" href="#full-menu">View the Full Menu <Arrow /></a></div>

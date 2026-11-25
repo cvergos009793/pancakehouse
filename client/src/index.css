@@ -33,7 +33,6 @@ em { font-style:normal; }
 .nav-tabs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; max-width:1120px; margin:auto; }
 .nav-tab { display:flex; min-width:0; flex-direction:column; justify-content:center; align-items:center; gap:5px; min-height:64px; background:transparent; color:var(--ink); border:1px solid #d7192024; border-radius:999px; padding:11px 18px; transition:background .2s,transform .2s,border-color .2s; }
 .nav-tab>span { font-family:Montserrat,Arial,sans-serif; font-weight:850; font-size:20px; line-height:1.2; letter-spacing:-.4px; white-space:nowrap; }
-.nav-tab small { font-family:Montserrat,sans-serif; font-size:10px; font-weight:650; line-height:1.4; opacity:.8; white-space:nowrap; }
 .nav-order { background:var(--red); border-color:var(--red); color:var(--white); }
 .nav-menu { background:var(--yellow); border-color:var(--yellow); }
 .nav-tab:hover { background:#fff; border-color:var(--red); transform:translateY(-1px); }
@@ -84,14 +83,11 @@ em { font-style:normal; }
 .scene-dots a { display:block; width:7px; height:7px; border:1px solid var(--ink); border-radius:50%; }
 .scene-dots .active { background:var(--red); border-color:var(--red); }
 .scene-dots.hidden { opacity:0; pointer-events:none; }
-.menu-section { position:relative; background:var(--cream); padding:90px 6%; border-top:14px solid var(--red); }
+.menu-section { position:relative; background:var(--cream); padding:90px 6%; }
 .section-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:30px; }
 .section-heading h2,.story-text h2,.visit-heading h2 { font-family:Bevan,Georgia,serif; font-size:clamp(42px,5.2vw,74px); font-weight:400; line-height:1.05; letter-spacing:-1.5px; margin:0; }
 .section-heading h2 em,.story-text h2 em { color:var(--red); }
 .section-heading>p { font-size:13px; line-height:1.8; margin-bottom:6px; }
-.menu-filters { display:flex; flex-wrap:wrap; gap:24px; border-bottom:1px solid #1113; margin:35px 0; }
-.menu-filters button { border:0; border-bottom:3px solid transparent; background:transparent; padding:14px 0; font-size:15px; font-weight:800; }
-.menu-filters button[aria-pressed=true] { color:var(--red); border-color:var(--red); }
 .menu-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:25px; }
 .menu-photo { position:relative; height:245px; overflow:hidden; border-radius:5px; background:var(--yellow); }
 .menu-photo img { width:100%; height:100%; object-fit:cover; transition:transform .4s; }
@@ -160,7 +156,6 @@ footer small { font-size:9px; margin-left:auto; }
   .nav-tabs { gap:7px; }
   .nav-tab { min-height:60px; padding:10px 5px; border-radius:16px; }
   .nav-tab>span { font-size:clamp(11px,3.3vw,17px); letter-spacing:-.3px; }
-  .nav-tab small { font-size:7.5px; line-height:1.5; letter-spacing:-.1px; }
   .brand-banner { background-size:auto; }
   .food-scene { height:auto; min-height:850px; }
   .scene-yellow { padding-top:0; min-height:850px; height:auto; }
@@ -182,7 +177,7 @@ footer small { font-size:9px; margin-left:auto; }
   .scene-bottom { min-height:46px; font-size:7px; } .scene-bottom>span:first-child { display:none; } .scene-bottom a { font-size:8px; gap:15px; }
   .scene-dots { right:calc(var(--page-rail) + 5px); padding:10px 6px; gap:10px; } .scene-dots a { width:6px; height:6px; }
   .menu-section { padding:55px 6%; } .section-heading { display:block; } .section-heading h2,.story-text h2,.visit-heading h2 { font-size:clamp(35px,9.5vw,53px); letter-spacing:-.6px; }
-  .section-heading>p { font-size:11px; margin-top:20px; } .menu-filters { gap:14px; margin:22px 0; } .menu-filters button { font-size:11px; padding:14px 0; }
+  .section-heading>p { font-size:11px; margin-top:20px; }
   .menu-grid { gap:25px 13px; } .menu-photo { height:178px; } .menu-number { font-size:11px; padding:4px 7px; top:8px; left:8px; }
   .menu-arrow { height:26px; width:26px; right:8px; bottom:8px; } .menu-item-title { flex-wrap:wrap; gap:5px; margin-top:13px; }
   .menu-item-title h3 { font-size:10px; } .menu-item-title>span { font-size:10px; } .menu-item p { font-size:9px; line-height:1.8; }
@@ -212,29 +207,21 @@ footer small { font-size:9px; margin-left:auto; }
 .montage-shape-plate img { object-fit:cover; border-radius:50%; }
 .montage-shape-portrait { width:68%; height:81%; top:4%; left:10%; }
 .montage-shape-portrait img { border-radius:46% 46% 20% 30%; }
-.montage-detail { position:absolute; width:34%; aspect-ratio:.94; top:0; right:2%; background:var(--cream); border:6px solid var(--cream); border-radius:50%; filter:drop-shadow(5px 8px 1px #1114); }
-.montage-detail img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
-.montage-detail>span { display:none; position:absolute; bottom:-15px; left:-8%; width:116%; background:var(--red); color:white; border:2px solid var(--ink); padding:7px 5px; text-align:center; font-size:9px; font-weight:800; transform:rotate(5deg); }
 .montage-label { position:absolute; left:7%; bottom:13%; max-width:84%; transform:rotate(-5deg); background:var(--cream); color:var(--ink); border:2px solid var(--ink); box-shadow:4px 4px 0 var(--ink); padding:14px 19px; font-family:Bevan,Georgia,serif; font-size:18px; line-height:1.4; }
 .montage-frame-2 .montage-main { left:16%; }
-.montage-frame-2 .montage-detail { right:auto; left:1%; top:48%; width:30%; }
 .montage-frame-3 .montage-main { top:8%; left:18%; }
-.montage-frame-3 .montage-detail { top:47%; right:auto; left:0; }
 .montage-frame-4 .montage-main { left:5%; }
 .visit-details { display:grid; grid-template-columns:1.15fr 1fr auto; gap:35px; align-items:center; }
 .visit-details p { font-size:clamp(20px,2vw,28px); font-weight:800; line-height:1.5; margin:12px 0 0; }
 .detail-label { font-size:12px; font-weight:900; }
 @media (max-width:1050px) and (min-width:701px) {
   .montage-label { font-size:14px; padding:10px 12px; }
-  .montage-detail>span { font-size:7px; }
   .visit-details { grid-template-columns:1fr 1fr; }
   .visit-details .button { margin-left:0; justify-self:start; }
 }
 @media (max-width:700px) {
   .montage-stage,.scene-red .montage-stage { width:102%; left:auto; right:-1%; top:auto; bottom:64px; transform:none; }
   .montage-label { font-size:12px; padding:10px 12px; bottom:15%; }
-  .montage-detail { border-width:4px; }
-  .montage-detail>span { font-size:6px; padding:5px; bottom:-10px; }
   .visit-details { grid-template-columns:1fr; gap:30px; }
   .visit-details p { font-size:22px; font-weight:800; }
   .detail-label { font-size:11px; }

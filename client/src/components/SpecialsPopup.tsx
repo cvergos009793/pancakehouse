@@ -56,7 +56,7 @@ export default function SpecialsPopup() {
       <a className="button" href="#full-menu" onClick={close}>View Our Full Menu</a>
     </section>}
     <button type="button" className="specials-trigger" ref={trigger} aria-expanded={open} aria-controls={open ? 'specials-panel' : undefined} onClick={() => open ? close() : setOpen(true)}>
-      <img className="specials-mascot" src="/brand/rooster.png" alt="" aria-hidden="true" width="42" height="56" /><span>House Specials<small>Pancakes, waffles & eggs</small></span><span aria-hidden="true">{open ? '−' : '+'}</span>
+      <img className="specials-mascot" src="/brand/rooster.png" alt="" aria-hidden="true" width="42" height="56" /><span>House Specials<small>Pancakes, Waffles & Eggs</small></span><span aria-hidden="true">{open ? '−' : '+'}</span>
     </button>
   </aside>;
 }
